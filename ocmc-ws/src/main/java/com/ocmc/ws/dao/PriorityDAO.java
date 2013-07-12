@@ -6,11 +6,10 @@ import com.ocmc.ws.beans.PriorityBean;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.ocmc.utils.HibernateUtils;
 
 public class PriorityDAO implements IDao<PriorityBean> {
-	//SessionFactory sessionFactory = HibernateUtils.getSessionFactory();
-	SessionFactory sessionFactory;
+	private SessionFactory sessionFactory;
+	
 	@Autowired
 	public void setSessionFactory(SessionFactory sessionFactory) {
 	     this.sessionFactory = sessionFactory;
@@ -40,7 +39,7 @@ public class PriorityDAO implements IDao<PriorityBean> {
 
 	@Override
 	public List<PriorityBean> getAll() {
-		return (List<PriorityBean>)sessionFactory.getCurrentSession().createQuery("FROM PriorityBean");
+		return (List<PriorityBean>)sessionFactory.getCurrentSession().createQuery("FROM PriorityBean").list();
 	}
 
 }
